@@ -34,11 +34,11 @@
 
 <script>
 
-    const timeSeries = `time_series/temperature_${0}.csv`; //  abstracted data file
+    const timeSeries = `data/Data_CT.csv`; //  abstracted data file
     let svg = d3.select("svg");
     // min max temperature read during 2018
-    const min_temp =-88;
-    const max_temp = 56;
+    const min_temp =0;
+    const max_temp = 2000;
     // path generator
     const path = d3.geoPath();
 
@@ -61,7 +61,7 @@
             let colors = d3.scaleLinear()
                 .domain(d3.range(min_temp,max_temp,
                     parseInt(Math.abs(max_temp-min_temp)/6.5)))
-                .range(["#0d1a50", "#3e5eba", "#2b83ba",
+                .range(["#ffffff", "#3e5eba", "#2b83ba",
                     "#abdda4", "#ffffbf", "#fdae61", "#d7191c"])
                 .interpolate(d3.interpolateHcl);
 
@@ -72,7 +72,7 @@
             // Step 3 contour generator
             let contours = d3.contours()
             .size([m, n])
-                .thresholds(d3.range(min_temp,max_temp,6)) // threshold is 6 degrees
+                .thresholds(d3.range(min_temp,max_temp,240)) // threshold is 6 degrees
                 (values_T);
 
             // Step 3 append contour to path (d)
